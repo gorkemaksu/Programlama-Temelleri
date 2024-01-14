@@ -26,7 +26,7 @@ class Program
             Console.WriteLine(A[i]);
         }
 
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("Tuşa Bas. . . ");
         Console.ReadKey(true);
     }
 }
