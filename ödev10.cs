@@ -31,7 +31,7 @@ class Program
             Console.WriteLine(s);
         }
 
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("Tuşa Bas . . . ");
         Console.ReadKey(true);
 
        
