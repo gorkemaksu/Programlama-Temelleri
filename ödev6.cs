@@ -1,28 +1,30 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace or096
+namespace ConsoleApp3
 {
-    class Program
+    internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            double[] burslar = { 150, 600, 700, 450, 850, 275, 950, 1500, 210, 368 };
-
-            int b = 0;
-            foreach (double burs in burslar)
+            int a = 11;
+            Console.WriteLine("değer giriniz ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            String s = "b Sayısı Asal Sayı";
+            if (b == 1) { Console.WriteLine("ASAL DEĞİL!"); goto bitir; }
+            for (a = 2; a <= b / 2; a++)
             {
-                if (burs >= 500)
+                if (b % a == 0)
                 {
-                    Console.WriteLine(burs);
-                    continue;
+                    s = "b Sayısı Asal Sayı Değil!";
+                    break;
                 }
-
-                burs = (burs * 0.1) + burs + 50;
-                Console.WriteLine(burs);
-                b++;
             }
-
-            Console.Write("DEVAM ETMEK İÇİN BİR TUŞA BASINIZ. . . ");
+            Console.WriteLine(s);
+        bitir: Console.Write("DEVAM ETMEK İÇİN BİR TUŞA BASINIZ. . . ");
             Console.ReadKey(true);
         }
     }
