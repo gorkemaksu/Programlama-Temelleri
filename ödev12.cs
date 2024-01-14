@@ -1,41 +1,41 @@
-﻿using System;
+using System;
 
 class Program
 {
-    public static void Main(string[] args)
+    static void Main()
     {
-        int a;
-        string[] il = { "Muş", "Ağrı", "Bolu", "Mersin", "Ankara", "Sivas", "Kayseri" };
-        string[] isim = { "Asuman", "İclal", "Emin", "Bekir", "Ahmet", "Can", "Esma" };
-        bool[] D = new bool[7];
+        // Kullanıcıdan bir sayı girmesini istiyoruz
+        Console.WriteLine("Bir sayı girin:");
 
-        for (a = 0; a <= 6; a++)
+        // Kullanıcının girişini alıp, sayıya dönüştürüyoruz
+        if (int.TryParse(Console.ReadLine(), out int sayi))
         {
-            Console.WriteLine("Bool D dizisinin " + a + ". elemanı= " + D[a]);
-        }
+            // Kullanıcıdan TEK veya ÇİFT seçeneğini sormak için
+            Console.WriteLine("TEK’leri mi ÇİFT’leri mi toplamak istersiniz? (TEK/ÇİFT)");
 
-        Random rastgele = new Random();
+            // Kullanıcının girişini büyük harfe çeviriyoruz
+            string tercih = Console.ReadLine().ToUpper();
 
-        for (a = 0; a <= 6; a++)
-        {
-            int sayi;
+            // Toplamı saklamak için bir değişken
+            int toplam = 0;
 
-            do
+            // Kullanıcının tercihine göre TEK veya ÇİFT sayıları topluyoruz
+            for (int i = 1; i <= sayi; i++)
             {
-                sayi = rastgele.Next(0, 7);
-            } while (D[sayi] == true);
+                // TEK sayıları toplamak istiyorsa ve i TEK sayı ise veya ÇİFT sayıları toplamak istiyorsa ve i ÇİFT sayı ise
+                if ((tercih == "TEK" && i % 2 == 1) || (tercih == "ÇİFT" && i % 2 == 0))
+                {
+                    // Toplamı güncelliyoruz
+                    toplam += i;
+                }
+            }
 
-            D[sayi] = true;
-            Console.WriteLine(isim[a] + "\t= " + il[sayi]);
+            // Sonucu ekrana yazdırıyoruz
+            Console.WriteLine($"Toplam: {toplam}");
         }
-
-        for (a = 0; a <= 6; a++)
+        else
         {
-            D[a] = false; // Her öğretmenin atanma durumunu sıfırla
-            Console.WriteLine("Bool D dizisinin " + a + ". elemanı= " + D[a]);
+            // Eğer geçerli bir sayı girişi yapılmazsa kullanıcıya uyarı veriyoruz
+            Console.WriteLine("Geçerli bir sayı giriniz.");
         }
-
-        Console.Write("Tuşa Bas . . . ");
-        Console.ReadKey(true);
     }
-}
