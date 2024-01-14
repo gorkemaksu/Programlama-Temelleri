@@ -28,7 +28,7 @@ class Program
         }
 
         Console.WriteLine("İlk Sayıya En Yakın Sayı = " + B[e]);
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("Tuşa Bas . . . ");
         Console.ReadKey(true);
     }
 }
