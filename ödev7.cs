@@ -34,7 +34,7 @@ class Program
             Console.WriteLine("Son rakamı sıfır olan bir sayı girilmedi.");
         }
 
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("Tuşa Bas . . . ");
         Console.ReadKey(true);
     }
 }
