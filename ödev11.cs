@@ -35,7 +35,7 @@ class Program
             Console.WriteLine("Bool D dizisinin " + a + ". elemanı= " + D[a]);
         }
 
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("Tuşa Bas . . . ");
         Console.ReadKey(true);
     }
 }
