@@ -1,32 +1,37 @@
-﻿using System;
+using System;
 
 class Program
 {
-    public static void Main(string[] args)
+    static void Main()
     {
-        int i, j, gecici, EnBuyukYer;
-        int[] A = { 78, 56, 23, 95, 68, 87, 61, 77, 45, 33 };
+        Console.WriteLine("Araç türünü girin \n otomobil \n kamyon \n iş makinası: "); // araç türü tanımlıyoruz
+        string aracTuru = Console.ReadLine().ToLower(); // araç türü girilmesini istiyoruz
 
-        for (i = 0; i < A.Length - 1; i++)
-        {
-            EnBuyukYer = i;
+        Console.WriteLine("Kalma süresini saat cinsinden girin: "); // kalma süresini saat cinsinden olarak tanımlıyoruz
+        int kalmaSuresi = Convert.ToInt32(Console.ReadLine()); // kalınan sürenin girilmesini istiyoruz
 
-            for (j = i + 1; j < A.Length; j++)
-            {
-                if (A[j] > A[EnBuyukYer])
-                {
-                    EnBuyukYer = j;
-                }
-            }
+        double toplamUcret = OtoparkUcretHesapla(aracTuru, kalmaSuresi); // araç türüne göre ücret hesaplayan formülü tanımlıyoruz
 
-            gecici = A[i];
-            A[i] = A[EnBuyukYer];
-            A[EnBuyukYer] = gecici;
+        Console.WriteLine("Çıkış ücreti: " + toplamUcret.ToString("0.00") + " TL"); // çıkış ücretini TL cinsinden ondalıklı biçimde yazmasını istiyoruz
+    }
 
-            Console.WriteLine(A[i]);
-        }
+    static double OtoparkUcretHesapla(string aracTuru, int kalmaSuresi)
+    {
+        double ilkIkiSaatUcret = 0;
+        double sonrakiSaatBasiUcret = 0;
+        double gunlukSabitUcretSaat = 0;
 
-        Console.Write("Tuşa Bas . . . ");
-        Console.ReadKey(true);
+        if (aracTuru == "otomobil") { ilkIkiSaatUcret = 5; sonrakiSaatBasiUcret = 1; gunlukSabitUcretSaat = 10; } // otomobil ücret formülünü tanımlıyoruz
+        else if (aracTuru == "kamyon") { ilkIkiSaatUcret = 8; sonrakiSaatBasiUcret = 2; gunlukSabitUcretSaat = 8; } // kamyon ücret formülünü tanımlıyoruz
+        else if (aracTuru == "iş makinası") { ilkIkiSaatUcret = 12; sonrakiSaatBasiUcret = 3; gunlukSabitUcretSaat = 8; } // iş makinası ücret formülünü tanımlıyoruz
+        else { Console.WriteLine("Geçersiz araç türü."); return 0; } // geçersiz araç türü girilirse ekrana "geçersiz araç türü girmesini istiyoruz"
+
+        double toplamUcret = 0;
+
+        if (kalmaSuresi <= 2) { toplamUcret = ilkIkiSaatUcret; }
+        else if (kalmaSuresi <= 24) { toplamUcret = ilkIkiSaatUcret + (kalmaSuresi - 2) * sonrakiSaatBasiUcret; } // kaç saat kadığını bulmak için <=24 işlemini kullanıyoruz
+        else { toplamUcret = ilkIkiSaatUcret + 22 * sonrakiSaatBasiUcret + Math.Ceiling((kalmaSuresi - 24) / 24.0) * gunlukSabitUcretSaat; } // kaç gün kaldığını bulmak için /24 işlemini kullanıyoruz
+
+        return toplamUcret;
     }
 }
